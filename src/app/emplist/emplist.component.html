@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Employee List</h2>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Employee Number</th>
+            <th>Fullname</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Employment Status</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employees">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.gender }}</td>
+            <td>{{ emp.email }}</td>
+            <td>
+              <ng-container *ngIf="emp.status === 'Active'; else inactiveBlock">
+                <span class="badge bg-success">Active</span>
+              </ng-container>
+              <ng-template #inactiveBlock>
+                <span class="badge bg-danger">Inactive</span>
+              </ng-template>
+            </td>
+            <td>{{ emp.salary | currency:'PHP' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  
